@@ -7,5 +7,5 @@ Type=Application
 StartupNotify=true
 Icon=unzip
 Categories=applications
-MimeType=application/zip,application/tar,application/tar+gzip,application/x-rar,application/x-7z-compressed
+MimeType=application/zip;application/tar;application/tar+gzip;application/x-rar;application/x-7z-compressed;
 X-OD-Manual=manual.txt
