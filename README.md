@@ -20,6 +20,9 @@ GitHub: x7bit
 
 Changelog:
 
+v1.4 (28/05/2020)
+Commands checks in the bash script. Added new bash script (misc) to compress a directory in a .opk file
+
 v1.3 (09/05/2020)
 GitHub version
 
