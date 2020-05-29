@@ -3,6 +3,6 @@
 Compress a directory in a .opk file (squashfs).
 
 Usage:
+```
        opk.sh <directory>
-
----
+```
