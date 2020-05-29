@@ -1,11 +1,11 @@
 [Desktop Entry]
 Name=Unarchiver
-Comment=Unarchiver (zip/tar/tar.gz/rar/7z)
+Comment=Unarchiver (zip/gz/tar/tar.gz/rar/7z)
 Exec=unarchiver.sh %f
 Terminal=true
 Type=Application
 StartupNotify=true
 Icon=unzip
 Categories=applications
-MimeType=application/zip;application/tar;application/tar+gzip;application/x-rar;application/x-7z-compressed;
+MimeType=application/zip;application/gzip;application/tar;application/tar+gzip;application/x-rar;application/x-7z-compressed;
 X-OD-Manual=manual.txt
