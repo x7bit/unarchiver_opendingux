@@ -20,6 +20,9 @@ GitHub: x7bit
 
 Changelog:
 
+v1.5 (29/05/2020)
+New MIME types added. Added .gz files. Check for extensions if MIME is octet-stream. Colors. More error messages. 
+
 v1.4 (28/05/2020)
 Commands checks in the bash script. Added new bash script (misc) to compress a directory in a .opk file
 

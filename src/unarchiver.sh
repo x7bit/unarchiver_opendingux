@@ -19,7 +19,7 @@ checkCmd() {
 unarchive() {
     if $2; then
         printf '\e[0;32m%-6s\e[m' "$(basename "$1"): successfully decompressed"
-        sleep 0.6
+        sleep 0.4
     else
         printf '\e[0;31m%-6s\e[m' "$(basename "$1"): decompression failed"
         readKey
@@ -68,14 +68,14 @@ byExtension() {
 dir=$(dirname "$1")
 mime=$(file -bi "$1" | cut -d';' -f1)
 case $mime in
-    "application/zip")
+    "application/zip" | "application/x-zip-compressed")
         checkCmd unzip
         unarchive "$1" $(unzip -od "$dir" "$1")
         ;;
-    "application/gzip")
+    "application/gzip" | "application/x-gzip")
         ungzip "$1"
         ;;
-    "application/tar")
+    "application/tar" | "application/x-tar")
         checkCmd tar
         unarchive "$1" $(tar -xf "$1" -C "$dir" --overwrite)
         ;;
@@ -83,7 +83,7 @@ case $mime in
         checkCmd tar
         unarchive "$1" $(tar -xzf "$1" -C "$dir" --overwrite)
         ;;
-    "application/x-rar")
+    "application/x-rar" | "application/x-rar-compressed")
         checkCmd unrar
         unarchive "$1" $(unrar x -o+ "$1" "$dir")
         ;;
