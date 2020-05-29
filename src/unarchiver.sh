@@ -6,25 +6,26 @@ readKey() {  # no arguments
     stty -icanon -echo min 1 time 0
     dd bs=1 count=1 >/dev/null 2>&1
     stty "$oldstty"
+    echo
+}
+finish() {  # no arguments
+    readKey
+    exit
 }
 checkCmd() {  # $1 == command
     which=$(which "$1")
     if [ -z "$which" ]; then
         printf '\e[0;31m%-6s\e[m' "$1: command not found"
-        readKey
-        echo
-        exit
+        finish
     fi
 }
 unarchive() {  # $1 == file ; $2 == decompress command (string)
     if eval $2; then
         echo
         printf '\e[0;32m%-6s\e[m' "$(basename "$1"): successfully decompressed"
-        sleep 0.6
     else
         echo
         printf '\e[0;31m%-6s\e[m' "$(basename "$1"): decompression failed"
-        readKey
     fi
 }
 ungzip() {  # $1 == file ; $2 == directory
@@ -63,11 +64,14 @@ byExtension() {  # $1 == file ; $2 == directory
             ;;
         *)
             printf '\e[0;31m%-6s\e[m' "$(basename "$1"): extension not recognized"
-            readKey
             ;;
     esac
 }
 # MAIN BLOCK
+if [ ! -f "$1" ]; then 
+    printf '\e[0;31m%-6s\e[m' "$(basename "$1"): file does not exists"
+    finish
+fi
 dir=$(dirname "$1")
 mime=$(file -bi "$1" | cut -d';' -f1)
 case $mime in
@@ -99,7 +103,6 @@ case $mime in
         ;;
     *)
         printf '\e[0;31m%-6s\e[m' "$mime: MIME not recognized"
-        readKey
         ;;
 esac
-echo
+finish
