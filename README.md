@@ -20,6 +20,9 @@ GitHub: x7bit
 
 Changelog:
 
+v1.6 (31/05/2020)
+Spanish localizations in the .desktop file. New icon.
+
 v1.5 (29/05/2020)
 New MIME types added. Added .gz files. Check for extensions if MIME is octet-stream. Colors. More error messages. 
 
