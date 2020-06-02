@@ -68,6 +68,10 @@ byExtension() {  # $1 == file ; $2 == directory
     esac
 }
 # MAIN BLOCK
+if [ -z "$1" ]; then
+    printf '\e[0;31m%-6s\e[m' "Missing filename"
+    finish
+fi
 if [ ! -f "$1" ]; then 
     printf '\e[0;31m%-6s\e[m' "$(basename "$1"): file does not exists"
     finish
