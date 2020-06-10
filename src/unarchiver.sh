@@ -19,7 +19,7 @@ checkCmd() {  # $1 == command
         finish
     fi
 }
-unarchive() {  # $1 == file ; $2 == decompress command (string)
+unarchive() {  # $1 == file ; $2 == decompress full command (string)
     if eval $2; then
         echo
         printf '\e[0;32m%-6s\e[m' "$(basename "$1"): successfully decompressed"
@@ -31,10 +31,10 @@ unarchive() {  # $1 == file ; $2 == decompress command (string)
 ungzip() {  # $1 == file ; $2 == directory
     regexSize=$(expr "$1" : '^.*.tar.gz$')
     totalSize=$(expr length "$1")
-    if [ "$regexSize" = "$totalSize" ]; then
+    if [ "$regexSize" = "$totalSize" ]; then  # tar + gzip (.tar.gz)
         checkCmd tar
         unarchive "$1" "tar -xzf \"$1\" -C \"$2\" --overwrite"
-    else
+    else  # only gzip (.gz)
         file=$(echo $1 | sed 's/\.gz$//')
         checkCmd gunzip        
         unarchive "$1" "gunzip -cf \"$1\" > \"$2/$file\""
